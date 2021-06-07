@@ -35,24 +35,24 @@ log.info("Copying SPA bundles to make directory");
 fs.copySync(path.join(baseBundlePath, 'xpui'), tempMakeBundlePath, {recursive: true});
 fs.copyFileSync(path.join(bundlePath, 'mod-sp-bundle.js'), path.join(tempMakeBundlePath, 'mod-sp-bundle.js'));
 
-log.info("Making changes to HTML files");
+log.info("Patching base bundles");
 
 const indexHTML: string = path.join(tempMakeBundlePath, 'index.html');
 const indexHTMLcontent: string = fs.readFileSync(indexHTML, {encoding: 'utf8'}).replace('<script defer="defer" src="/xpui.js"></script>', '<script defer="defer" src="/xpui.js"></script><script src="./mod-sp-bundle.js"></script>');
 fs.writeFileSync(indexHTML, indexHTMLcontent);
 
-log.info("Bundling SPA assets with modified code");
+log.info("Building SPAs with modified code");
 
 zip(tempMakeBundlePath, path.join(bundlePath, 'xpui.spa'), COMPRESSION_LEVEL.high).then(() => {
     log.info("Cleaning make directories");
     rimraf.sync(tempMakeBundlePath);
     rimraf.sync(path.resolve(tempMakeBundlePath, '..'));
-    log.info("Backing up of original bundles");
+    log.info("Backing up original bundles");
     fs.copySync(spotifyXpuiPath, spotifyXpuiPath.replace(path.basename(spotifyXpuiPath), 'xpui.spa.backup'), {overwrite: true});
     log.info("Copying modified bundles to Spotify executable");
     fs.copySync(path.join(bundlePath, 'xpui.spa'), spotifyXpuiPath, {overwrite: true});
 
-    log.info("Debugging Spotify in Dev Mode");
+    log.info("Starting Spotify in Dev Mode");
     child_process.spawn(spotifyPath, [chromeDebugArg]);
 
     log.info("Open chrome://inspect/#devices in your Chromium-based browser(e.g. Google Chrome)");
