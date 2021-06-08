@@ -1,8 +1,10 @@
-// import { getSpotifyDOM, SpotifyDOM } from "./sp-dom-lib"
 import $ = require('jquery');
-import { addScript } from "./internal-dom-helper";
+import { addScript } from "./dom/internal-dom-helper";
+import { getSpotifyDOM, SpotifyDOM } from './dom/sp-dom-lib';
+import SpotifyEventListener from './events';
 
 window.onload = function () {
-    addScript('https://code.jquery.com/jquery-3.6.0.min.js');
-    // $(getSpotifyDOM(SpotifyDOM.UpgradeButton)).hide();
+    // Spotify bootstrap routine
+    SpotifyEventListener.emit('init-frame');
+    $('body').one('DOMNodeInserted', () => console.log("Element added"));
 }
