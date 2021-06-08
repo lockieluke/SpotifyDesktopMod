@@ -24,7 +24,7 @@ SpotifyDesktopMod provides the capabilities to modify Spotify Desktop client to 
    yarn install
    ```
 
-4. Unpack SPA files(aka originally Spotify's JavaScript bundles), make sure you have Spotify Desktop installed.  On Windows, you must have the Win32 version installed.
+4. Unpack SPA files(aka original Spotify's JavaScript bundles), make sure you have Spotify Desktop installed.  On Windows, you need to have the Win32 version installed.
 
    ```bash
    yarn sp-unpack
