@@ -6,7 +6,7 @@ import $ = require('jquery');
 
 export default class SPDMWatermark implements SpotifyPlugin {
 
-    enabled: boolean = false;
+    enabled: boolean = true;
     NAME: string = "SpotifyDesktopMode Watermarks";
     DESCRIPTION: string = "Credit for SpotifyDesktopMode";
 
