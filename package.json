@@ -23,8 +23,8 @@
     "zip-a-folder": "^1.0.1"
   },
   "scripts": {
-    "unpack": "ts-node ./scripts/unpack-cli.ts --project ./tsconfig.json",
-    "sp-dev": "ts-node ./scripts/spotify-dev-mode.ts --project ./tsconfig.json"
+    "sp-unpack": "ts-node ./scripts/unpack-cli.ts --project ./scripts/tsconfig.json",
+    "sp-dev": "ts-node ./scripts/spotify-dev-mode.ts --project ./scripts/tsconfig.json"
   },
   "dependencies": {
     "jquery": "^3.6.0"

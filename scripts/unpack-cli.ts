@@ -1,24 +1,25 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import unzip = require('extract-zip');
+import { spotifyPath } from './sharedPaths';
 
 const createLogger = require('logging');
 const log = createLogger.default('Unpack SPA');
 
-if (process.argv.length < 5)
-    log.error("Error parsing arguments, not enough arguments");
+const spotifySPADir: string = path.join(path.dirname(spotifyPath), 'Apps');
 
-const targetSPA: string = process.argv[4].toString();
-const distFolder: string = path.join(process.cwd(), 'base', path.basename(targetSPA).replace(path.extname(targetSPA), ''));
+fs.readdirSync(spotifySPADir).forEach(moduleName => {
+    log.info(`Unpacking ${moduleName} from Spotify`)
+    unpackSPA(path.join(spotifySPADir, moduleName));
+})
+log.info(`Finished unpacking SPA modules to ${path.join(process.cwd(), 'base')}`)
 
-if (!fs.existsSync(targetSPA))
-    log.error("The target SPA file does not exist");
+function unpackSPA(targetSPA: string) {
+    const distFolder: string = path.join(process.cwd(), 'base', path.basename(targetSPA).replace(path.extname(targetSPA), ''));
 
-if (path.extname(targetSPA) !== '.spa')
-    log.error("The target file is not a SPA file");
-
-if (!fs.existsSync(distFolder)) fs.mkdirSync(distFolder, {recursive: true});
-
-unzip(targetSPA, {
-    dir: distFolder
-});
+    if (!fs.existsSync(distFolder)) fs.mkdirSync(distFolder, {recursive: true});
+    
+    unzip(targetSPA, {
+        dir: distFolder
+    });
+}
