@@ -1,3 +1,3 @@
-type SpotifyEventTypes = "init-spotify" | "init-frame";
+type SpotifyEventTypes = "init-approot" | "init-frame";
 
 export default SpotifyEventTypes;
