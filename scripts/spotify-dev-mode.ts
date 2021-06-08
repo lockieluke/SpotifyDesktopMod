@@ -37,8 +37,9 @@ webpack(require(path.join(process.cwd(), 'webpack.config.js')), (err, stats) => 
     log.info("Patching base bundles");
 
     const indexHTML: string = path.join(tempMakeBundlePath, 'index.html');
-    const indexHTMLcontent: string = fs.readFileSync(indexHTML, { encoding: 'utf8' }).replace('<script defer="defer" src="/xpui.js"></script>', '<script defer="defer" src="/xpui.js"></script><script src="./mod-sp-bundle.js"></script>');
-    fs.writeFileSync(indexHTML, indexHTMLcontent);
+    const indexHTMLcontent: string = fs.readFileSync(indexHTML, { encoding: 'utf8' });
+    if (!indexHTMLcontent.includes('<script src="./mod-sp-bundle.js"></script>'))
+        fs.writeFileSync(indexHTML, indexHTMLcontent.replace('<script defer="defer" src="/xpui.js"></script>', '<script defer="defer" src="/xpui.js"></script><script src="./mod-sp-bundle.js"></script>'));
 
     log.info("Building SPAs with modified code");
 
