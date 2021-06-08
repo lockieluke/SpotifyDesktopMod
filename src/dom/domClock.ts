@@ -30,6 +30,10 @@ export default function initDomClock() {
                                 SpotifyEventListener.emit('friend-pane-added');
                                 break;
 
+                            case SpotifyDOM.PlaylistFolder:
+                                SpotifyEventListener.emit('playlist-folders-added');
+                                break;
+
                             default:
                                 break;
                         }
