@@ -1,4 +1,4 @@
-import { getElementByXpath } from './internal-dom-helper';
+import { getElementByXpath } from './internalDomHelper';
 
 export enum SpotifyDOM {
     AppRoot = `//*[@id="main"]/div/div[2]`,
