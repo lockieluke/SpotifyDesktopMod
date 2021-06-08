@@ -5,8 +5,7 @@
         "alwaysStrict": true,
         "lib": ["DOM"],
         "removeComments": true,
-        "rootDir": "src",
-        "outDir": "dist"
+        "outDir": "dist",
     },
-    "exclude": ["scripts"]
+    "exclude": ["scripts", "webpack"]
 }

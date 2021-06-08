@@ -10,6 +10,7 @@
     "@types/jquery": "^3.5.5",
     "@types/node": "^15.12.1",
     "@types/rimraf": "^3.0.0",
+    "cross-env": "^7.0.3",
     "extract-zip": "^2.0.1",
     "fs-extra": "^10.0.0",
     "logging": "^3.3.0",
@@ -17,6 +18,7 @@
     "rimraf": "^3.0.2",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^4.3.2",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
@@ -24,7 +26,8 @@
   },
   "scripts": {
     "sp-unpack": "ts-node ./scripts/unpack-cli.ts --project ./scripts/tsconfig.json",
-    "sp-dev": "ts-node ./scripts/spotify-dev-mode.ts --project ./scripts/tsconfig.json"
+    "sp-dev": "ts-node ./scripts/spotify-dev-mode.ts --project ./scripts/tsconfig.json",
+    "webpack": "cross-env TS_NODE_PROJECT=\"./webpack/tsconfig.json\" webpack --mode \"production\""
   },
   "dependencies": {
     "jquery": "^3.6.0"
