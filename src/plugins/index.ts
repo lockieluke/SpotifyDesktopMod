@@ -1,5 +1,6 @@
 import HideFriendPane from "./HideFriendPane";
 import HideUpgradeButton from "./HideUpgradeButton";
+import RemoveAdiFrames from "./RemoveAdiFrames";
 import SPDMWatermark from "./SPDMWatermark";
 
 export interface SpotifyPlugin {
@@ -17,6 +18,7 @@ export default class SpotifyPluginLoader {
         this.plugins.push(new HideUpgradeButton());
         this.plugins.push(new HideFriendPane());
         this.plugins.push(new SPDMWatermark());
+        this.plugins.push(new RemoveAdiFrames());
 
         this.plugins.forEach(plugin => {
             plugin.load();

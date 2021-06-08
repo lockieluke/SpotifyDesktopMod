@@ -34,6 +34,14 @@ export default function initDomClock() {
                                 SpotifyEventListener.emit('playlist-folders-added');
                                 break;
 
+                            case SpotifyDOM.AdiFrames:
+                                SpotifyEventListener.emit('ad-iframes-added');
+                                break;
+
+                            case SpotifyDOM.AdTrackingPixel:
+                                SpotifyEventListener.emit('ad-tracking-pixel-added');
+                                break;
+
                             default:
                                 break;
                         }
