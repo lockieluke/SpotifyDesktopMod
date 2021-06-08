@@ -1,10 +1,15 @@
 import $ = require('jquery');
-import { addScript } from "./dom/internal-dom-helper";
-import { getSpotifyDOM, SpotifyDOM } from './dom/sp-dom-lib';
+import { initAuthInfo } from './authInfo';
+import initDomClock from './dom/domClock';
 import SpotifyEventListener from './events';
+import SPDMPrefs from './prefs';
 
 window.onload = function () {
     // Spotify bootstrap routine
     SpotifyEventListener.emit('init-frame');
-    $('body').one('DOMNodeInserted', () => console.log("Element added"));
+    initAuthInfo();
+    SPDMPrefs.init();
+    initDomClock();
+
+    SpotifyEventListener.once('upgraded-btn-added', () => alert("Not Premium"))
 }
