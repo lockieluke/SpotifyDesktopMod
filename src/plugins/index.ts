@@ -1,3 +1,4 @@
+import HideFriendPane from "./HideFriendPane";
 import HideUpgradeButton from "./HideUpgradeButton";
 
 export interface SpotifyPlugin {
@@ -13,6 +14,7 @@ export default class SpotifyPluginLoader {
 
     public static loadPlugins() {
         this.plugins.push(new HideUpgradeButton());
+        this.plugins.push(new HideFriendPane());
 
         this.plugins.forEach(plugin => {
             plugin.load();

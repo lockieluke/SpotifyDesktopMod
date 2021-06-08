@@ -26,6 +26,10 @@ export default function initDomClock() {
                                 })
                                 break;
 
+                            case SpotifyDOM.FriendPane:
+                                SpotifyEventListener.emit('friend-pane-added');
+                                break;
+
                             default:
                                 break;
                         }

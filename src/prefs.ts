@@ -4,13 +4,15 @@ declare let spdm: SPDM;
 
 export interface ISPDMPrefKeys {
     hidePremiumBtn: boolean,
+    hideFriendPane: boolean
 }
 
 export default class SPDMPrefs {
 
     public static init() {
         spdm.prefs = {
-            hidePremiumBtn: true
+            hidePremiumBtn: true,
+            hideFriendPane: true
         };
         if (window.sessionStorage.getItem('spdm-prefs')) {
             spdm.prefs = JSON.parse(window.sessionStorage.getItem('spdm-prefs'));
