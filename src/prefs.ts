@@ -5,7 +5,8 @@ declare let spdm: SPDM;
 export interface ISPDMPrefKeys {
     hidePremiumBtn: boolean,
     hideFriendPane: boolean,
-    removeAdiFrames: boolean
+    removeAdiFrames: boolean,
+    removeBannerAds: boolean
 }
 
 export default class SPDMPrefs {
@@ -14,7 +15,8 @@ export default class SPDMPrefs {
         spdm.prefs = {
             hidePremiumBtn: true,
             hideFriendPane: true,
-            removeAdiFrames: true
+            removeAdiFrames: true,
+            removeBannerAds: true
         };
         if (window.sessionStorage.getItem('spdm-prefs')) {
             spdm.prefs = JSON.parse(window.sessionStorage.getItem('spdm-prefs'));

@@ -42,6 +42,10 @@ export default function initDomClock() {
                                 SpotifyEventListener.emit('ad-tracking-pixel-added');
                                 break;
 
+                            case SpotifyDOM.AdBanner:
+                                SpotifyEventListener.emit('ad-banner-added');
+                                break;
+
                             default:
                                 break;
                         }
