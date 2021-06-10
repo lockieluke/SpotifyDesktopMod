@@ -20,7 +20,8 @@ const config: webpack.Configuration = {
   output: {
     filename: 'mod-sp-bundle.js',
     path: path.join(process.cwd(), 'dist')
-  }
+  },
+  devtool: 'eval'
 };
 
 export default config;
