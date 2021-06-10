@@ -6,15 +6,20 @@
   "author": "lockieluke <sherlockluk@outlook.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/cross-spawn": "^6.0.2",
     "@types/fs-extra": "^9.0.11",
     "@types/jquery": "^3.5.5",
     "@types/node": "^15.12.1",
+    "@types/require-from-string": "^1.2.0",
     "@types/rimraf": "^3.0.0",
+    "@types/webpack-dev-server": "^3.11.4",
     "cross-env": "^7.0.3",
+    "cross-spawn": "^7.0.3",
     "extract-zip": "^2.0.1",
     "fs-extra": "^10.0.0",
     "logging": "^3.3.0",
     "nodemon": "^2.0.7",
+    "require-from-string": "^2.0.2",
     "rimraf": "^3.0.2",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
@@ -22,6 +27,7 @@
     "typescript": "^4.3.2",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2",
     "zip-a-folder": "^1.0.1"
   },
   "scripts": {

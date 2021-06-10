@@ -11,8 +11,8 @@ const config: webpack.Configuration = {
           path.join(process.cwd(), 'node_modules'),
           path.join(process.cwd(), 'scripts')
         ]
-      },
-    ],
+      }
+    ]
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
