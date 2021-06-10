@@ -10,7 +10,7 @@ export function patchSPA(mode: 'development' | 'production') {
     const indexHTML: string = path.join(tempMakeBundlePath, 'index.html');
     const indexHTMLcontent: string = fs.readFileSync(indexHTML, { encoding: 'utf8' });
     if (!indexHTMLcontent.includes('<script src="./mod-sp-bundle.js"></script>'))
-        fs.writeFileSync(indexHTML, indexHTMLcontent.replace('<script defer="defer" src="/xpui.js"></script>', mode === 'development' ? '<script defer="defer" src="/xpui.js"></script><script id="mod-sp" src="http://localhost:19132/mod-sp-bundle.js"></script>' : '<script defer="defer" src="/xpui.js"></script><script id="mod-sp" src="./mod-sp-bundle.js"></script>'));
+        fs.writeFileSync(indexHTML, indexHTMLcontent.replace('<script defer="defer" src="/xpui.js"></script>', mode === 'development' ? '<script defer="defer" src="/xpui.js"></script><script id="mod-sp" src="http://localhost:19132/mod-sp-bundle.js"></script>' : '<script id="mod-sp" src="./mod-sp-bundle.js"></script><script defer="defer" src="/xpui.js"></script>'));
 }
 
 export function installToSpotify() {

@@ -19,17 +19,21 @@ export const startWebpackDevServer = (listening: () => void) => {
     new WebpackDevServer(webpack({
         ...transpiledWebpackConfig,
         devServer: {
-            contentBase: path.join(process.cwd(), 'dist'),
+            host: 'localhost',
             port: 19132,
-            compress: true,
-            liveReload: true,
             https: true,
             socket: 'socket',
+            public: 'localhost:19132',
+            publicPath: path.join(process.cwd(), 'dist'),
             stats: {
                 chunks: false
+            },
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         },
-        mode: 'development'
+        mode: 'development',
     })).listen(19132, 'localhost', err => {
         if (err) log.error(err);
     }).once('listening', listening);
