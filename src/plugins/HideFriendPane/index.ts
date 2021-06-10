@@ -13,7 +13,7 @@ export default class HideFriendPane implements SpotifyPlugin {
 
     public load() {
         if (SPDMPrefs.get()['hideFriendPane']) this.enabled = true;
-        SpotifyEventListener.once('friend-pane-added', () => {
+        SpotifyEventListener.on('friend-pane-added', () => {
             if (this.enabled)
                 $(getSpotifyDOM(SpotifyDOM.FriendPane)).hide();
         })
