@@ -22,7 +22,12 @@ export const startWebpackDevServer = (listening: () => void) => {
             contentBase: path.join(process.cwd(), 'dist'),
             port: 19132,
             compress: true,
-            liveReload: true
+            liveReload: true,
+            https: true,
+            socket: 'socket',
+            stats: {
+                chunks: false
+            }
         },
         mode: 'development'
     })).listen(19132, 'localhost', err => {
