@@ -1,5 +1,4 @@
 import HideAdBanners from "./HideAdBanners";
-import HideFriendPane from "./HideFriendPane";
 import HideUpgradeButton from "./HideUpgradeButton";
 import RemoveAdiFrames from "./RemoveAdiFrames";
 import SPDMWatermark from "./SPDMWatermark";
@@ -19,7 +18,6 @@ export default class SpotifyPluginLoader {
 
     public static loadPlugins() {
         // this.plugins.push(new HideUpgradeButton());
-        // this.plugins.push(new HideFriendPane());
         this.plugins.push(new SPDMWatermark());
         this.plugins.push(new RemoveAdiFrames());
         this.plugins.push(new HideAdBanners());
