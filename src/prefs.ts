@@ -19,7 +19,7 @@ export default class SPDMPrefs {
         if (window.sessionStorage.getItem('spdm-prefs')) {
             spdm.prefs = JSON.parse(window.sessionStorage.getItem('spdm-prefs'));
         }
-
+        window.sessionStorage.setItem('spdm-prefs', JSON.stringify(spdm.prefs));
     }
 
     public static set(prefs: Partial<ISPDMPrefKeys>) {
@@ -27,6 +27,7 @@ export default class SPDMPrefs {
             ...spdm,
             ...prefs
         };
+        window.sessionStorage.setItem('spdm-prefs', JSON.stringify(spdm.prefs));
     }
 
     public static get() {
