@@ -45,6 +45,10 @@ export default class DomClock {
                                     case SpotifyDOM.AdBanner:
                                         SpotifyEventListener.emit('ad-banner-added');
                                         break;
+
+                                    case SpotifyDOM.AvatarMenu:
+                                        SpotifyEventListener.emit('avatar-menu-opened');
+                                        break;
                                 }
                             }
                         }
