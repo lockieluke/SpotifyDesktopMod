@@ -30,7 +30,7 @@ SpotifyDesktopMod provides the capabilities to modify Spotify Desktop client to 
    yarn sp-unpack
    ```
 
-5. Start Spotify in Dev Mode via our script(automatically compilation and injection)
+5. Start Spotify in Dev Mode via our script(automatic compilation and injection)
 
    ```bash
    yarn sp-dev
