@@ -15,7 +15,7 @@ export default class HideUpgradeButton implements SpotifyPlugin {
         if (SPDMPrefs.get()['hidePremiumBtn']) this.enabled = true;
         SpotifyEventListener.on('upgraded-btn-added', () => {
             if (this.enabled)
-                $(getSpotifyDOM(SpotifyDOM.UpgradeButton)).remove();
+                $(getSpotifyDOM(SpotifyDOM.UpgradeButton)).hide();
         })
     }
 }
