@@ -1,8 +1,9 @@
 import { SpotifyPlugin } from "..";
 import { getSpotifyDOM, SpotifyDOM } from "../../dom/spDomLib";
 import SpotifyEventListener from "../../events";
-
 import SPDMPrefs from "../../prefs";
+
+import $ = require('jquery');
 
 export default class HideAdBanners implements SpotifyPlugin {
 
@@ -12,11 +13,10 @@ export default class HideAdBanners implements SpotifyPlugin {
 
     public load() {
         if (SPDMPrefs.get()['removeBannerAds']) this.enabled = true;
-        SpotifyEventListener.on('init-approot', () => {
+        SpotifyEventListener.on('ad-banner-added', () => {
             if (this.enabled)
-                setInterval(() => {
-                    getSpotifyDOM(SpotifyDOM.AdBanner).style.display = 'none';
-                }, 200);
+                if ($('body').has(getSpotifyDOM(SpotifyDOM.AdBanner)))
+                    $(getSpotifyDOM(SpotifyDOM.AdBanner)).hide();
         })
     }
 }
