@@ -1,64 +1,64 @@
 import SpotifyEventListener from "../events";
 import { SpotifyDOM } from "./spDomLib";
-import { getXpathFromElement } from "./internalDomHelper";
 import AuthInfo from "../authInfo";
 
-export default function initDomClock() {
-    const domClock = new MutationObserver((mutations, me) => {
-        mutations.forEach(mutation => {
-            const addedNodes = mutation.addedNodes;
-            if (!addedNodes) return;
+export default class DomClock {
 
-            for (let i = 0; i < addedNodes.length; i++) {
-                const node: Node = addedNodes[i];
+    private static domClock: MutationObserver = null;
 
-                for (const dom in SpotifyDOM) {
-                    if (getXpathFromElement(document.querySelector(dom)) == getXpathFromElement(node)) {
-                        switch (SpotifyDOM[dom]) {
-                            case SpotifyDOM.AppRoot:
-                                SpotifyEventListener.emit('init-approot');
-                                break;
-
-                            case SpotifyDOM.UpgradeButton:
-                                SpotifyEventListener.emit('upgraded-btn-added');
-                                AuthInfo.set({
-                                    isPremium: false
-                                })
-                                break;
-
-                            case SpotifyDOM.FriendPane:
-                                SpotifyEventListener.emit('friend-pane-added');
-                                break;
-
-                            case SpotifyDOM.PlaylistFolder:
-                                SpotifyEventListener.emit('playlist-folders-added');
-                                break;
-
-                            case SpotifyDOM.AdiFrames:
-                                SpotifyEventListener.emit('ad-iframes-added');
-                                break;
-
-                            case SpotifyDOM.AdTrackingPixel:
-                                SpotifyEventListener.emit('ad-tracking-pixel-added');
-                                break;
-
-                            case SpotifyDOM.AdBanner:
-                                SpotifyEventListener.emit('ad-banner-added');
-                                break;
-
-                            default:
-                                break;
+    public static initGlobalDomHooks() {
+        this.domClock = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+                const addedDOM = mutation.addedNodes;
+                if (addedDOM) {
+                    for (let i = 0; i < addedDOM.length; i++) {
+                        for (const dom in SpotifyDOM) {
+                            if (document.contains(document.querySelector(SpotifyDOM[dom].toString()))) {
+                                switch (SpotifyDOM[dom]) {
+                                    case SpotifyDOM.AppRoot:
+                                        SpotifyEventListener.emit('init-approot');
+                                        break;
+        
+                                    case SpotifyDOM.UpgradeButton:
+                                        SpotifyEventListener.emit('upgraded-btn-added');
+                                        AuthInfo.set({
+                                            isPremium: false
+                                        })
+                                        break;
+        
+                                    case SpotifyDOM.FriendPane:
+                                        SpotifyEventListener.emit('friend-pane-added');
+                                        break;
+        
+                                    case SpotifyDOM.PlaylistFolder:
+                                        SpotifyEventListener.emit('playlist-folders-added');
+                                        break;
+        
+                                    case SpotifyDOM.AdiFrames:
+                                        SpotifyEventListener.emit('ad-iframes-added');
+                                        break;
+        
+                                    case SpotifyDOM.AdTrackingPixel:
+                                        SpotifyEventListener.emit('ad-tracking-pixel-added');
+                                        break;
+        
+                                    case SpotifyDOM.AdBanner:
+                                        SpotifyEventListener.emit('ad-banner-added');
+                                        break;
+                                }
+                            }
                         }
                     }
                 }
-            }
-        })
-    })
+            })
+        });
 
-    domClock.observe(document.body, {
-        childList: true,
-        subtree: true,
-        attributes: false,
-        characterData: false
-    })
+        this.domClock.observe(document, {attributes: false, childList: true, characterData: false, subtree:true})
+    }
+
+    public static disconnectDomClock() {
+        this.domClock.disconnect();
+        this.domClock = null;
+    }
+
 }
