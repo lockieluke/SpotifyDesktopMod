@@ -1,9 +1,9 @@
 import { SpotifyPlugin } from "..";
 import SpotifyEventListener from "../../events";
 import { getSpotifyDOM, SpotifyDOM } from "../../dom/spDomLib";
+import SPDMPrefs from "../../prefs";
 
 import $ = require('jquery');
-import SPDMPrefs from "../../prefs";
 
 export default class SPDMAvatarInjection implements SpotifyPlugin {
 
