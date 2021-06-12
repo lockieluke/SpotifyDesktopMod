@@ -32,7 +32,7 @@ buildWithWebpack('development', () => {
         startWebpackDevServer(() => {
             log.info("Starting Spotify in Dev Mode");
             startSpotifyDev();
-            log.info("Open chrome://inspect/#devices in your Chromium-based browser(e.g. Google Chrome)");
+            log.info("Open chrome://inspect/#devices in your Chromium-based browser(e.g. Google Chrome) or use Spotify Desktop's built-in Develop menu");
         })
     })
 })
