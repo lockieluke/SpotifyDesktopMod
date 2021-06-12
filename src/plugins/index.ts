@@ -5,6 +5,7 @@ import SPDMWatermark from "./SPDMWatermark";
 
 import $ = require('jquery');
 import SPDMAvatarInjection from "./SPDMAvatarMenuInjection";
+import Clock from "./Clock";
 
 export interface SpotifyPlugin {
     NAME: string,
@@ -23,6 +24,7 @@ export default class SpotifyPluginLoader {
         this.plugins.push(new HideUpgradeButton());
         this.plugins.push(new RemoveAdiFrames());
         this.plugins.push(new HideAdBanners());
+        this.plugins.push(new Clock());
 
         this.plugins.forEach(plugin => {
             plugin.load();
