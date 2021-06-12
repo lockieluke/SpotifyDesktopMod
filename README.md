@@ -36,6 +36,5 @@ SpotifyDesktopMod provides the capabilities to modify Spotify Desktop client to 
    yarn sp-dev
    ```
 
-6. Spotify is started in dev mode.  Go to `chrome://inspect/#devices` and open DevTools for Spotify Desktop
+6. Spotify is started in dev mode.  Go to `chrome://inspect/#devices` or use the Spotify Desktop's built-in Develop menu to open DevTools
 7. Check and see if the message "Powered by SpotifyDesktopMod" is in the playlist folder
-
