@@ -20,13 +20,16 @@ export default class Clock implements SpotifyPlugin {
                 this.clock = $("<h1></h1>").css({
                     'font-size': 'medium',
                     'color': '#D9D9D9'
-                }).insertBefore($(getSpotifyDOM(SpotifyDOM.UpgradeButton))).text(`${new Date().getHours()}:${new Date().getMinutes()}`).hide().delay(200).fadeIn(200);
+                }).insertBefore($(getSpotifyDOM(SpotifyDOM.UpgradeButton))).text(this.getTime()).hide().delay(200).fadeIn(200);
                 setInterval(() => {
-                    const currentTime: string = `${new Date().getHours()}:${new Date().getMinutes()}`;
-                    if (this.clock.text() !== currentTime)
-                        this.clock.text(currentTime);
+                    if (this.clock.text() !== this.getTime())
+                        this.clock.text(this.getTime());
                 }, 1000);
             }
         });
+    }
+
+    private getTime(): string {
+        return `${new Date().getHours()}:${new Date().getMinutes().toString().length == 1 ? `0${new Date().getMinutes()}` : new Date().getMinutes()}`;
     }
 }
