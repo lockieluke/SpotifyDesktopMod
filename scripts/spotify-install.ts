@@ -1,7 +1,7 @@
 import { COMPRESSION_LEVEL, zip } from "zip-a-folder";
 import { bundlePath, tempMakeBundlePath } from "./sharedPaths";
 import { cleanBuildDirs, installToSpotify, patchSPA } from "./spa";
-import { preprocessDirs } from "./spotify";
+import { preprocessDirs, switchSpotifyDevMode } from "./spotify";
 import { buildWithWebpack } from "./webpack";
 
 import * as path from 'path';
@@ -18,6 +18,7 @@ buildWithWebpack('production', () => {
     zip(tempMakeBundlePath, path.join(bundlePath, 'xpui.spa'), COMPRESSION_LEVEL.high).then(() => {
         log.info("Copying modified bundles to Spotify executable");
         installToSpotify();
+        switchSpotifyDevMode(false);
         log.info("Cleaning make directories");
         cleanBuildDirs();
         log.info("Finished installing");

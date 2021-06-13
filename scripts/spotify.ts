@@ -11,7 +11,7 @@ export default function startSpotifyDev() {
     const debugPort: number = 8080;
     const chromeDebugArg: string = `--remote-debugging-port=${debugPort.toString()}`;
 
-    enableDevMode();
+    switchSpotifyDevMode(true);
 
     (process.platform === 'win32' ? cross_spawn : child_process.spawn)(spotifyPath, [chromeDebugArg], {
         windowsHide: false
@@ -21,15 +21,22 @@ export default function startSpotifyDev() {
     });
 }
 
-function enableDevMode() {
+export function switchSpotifyDevMode(enable: boolean) {
     // Should be a function that Spotify employees use to debug the app but we found this out when we attempted to reverse enginner Spotify Desktop with IDA
     // Add config `app.enable-developer-mode=true`
     let prefs: string = fs.readFileSync(spotifyGlobPrefPath, {
         encoding: 'utf-8'
     });
-    const isDevModeEnabled: boolean = prefs.includes('app.enable-developer-mode=true');
-    if (!isDevModeEnabled)
-        prefs += "\r\napp.enable-developer-mode=true";
+    const switchToApply = (enable: boolean) => {
+        return `app.enable-developer-mode=${enable ? "true" : "false"}`;
+    };
+
+    // Remove previous settings
+    if (prefs.includes(switchToApply(!enable)))
+        prefs = prefs.replace(`${switchToApply(!enable)}`, '');
+
+    if (!prefs.includes(switchToApply(enable)))
+        prefs += `\r\n${switchToApply(enable)}`;
 
     fs.writeFileSync(spotifyGlobPrefPath, prefs);
 }
