@@ -13,7 +13,9 @@ export default function startSpotifyDev() {
 
     enableDevMode();
 
-    (process.platform === 'win32' ? cross_spawn : child_process.spawn)(spotifyPath, [chromeDebugArg]).once('exit', exitCode => {
+    (process.platform === 'win32' ? cross_spawn : child_process.spawn)(spotifyPath, [chromeDebugArg], {
+        windowsHide: false
+    }).once('exit', exitCode => {
         log.info("Spotify exited");
         process.exit(exitCode);
     });

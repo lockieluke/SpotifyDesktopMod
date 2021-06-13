@@ -6,7 +6,7 @@ import { spotifyPath } from './sharedPaths';
 const createLogger = require('logging');
 const log = createLogger.default('Unpack SPA');
 
-const spotifySPADir: string = path.join(path.dirname(spotifyPath), 'Apps');
+const spotifySPADir: string = path.join(path.dirname(path.dirname(spotifyPath)), 'Resources', 'Apps');
 
 fs.readdirSync(spotifySPADir).forEach(moduleName => {
     log.info(`Unpacking ${moduleName} from Spotify`)
