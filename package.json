@@ -35,6 +35,7 @@
   "scripts": {
     "sp-unpack": "ts-node ./scripts/unpack-cli.ts --project ./scripts/tsconfig.json",
     "sp-dev": "ts-node ./scripts/spotify-dev-mode.ts --project ./scripts/tsconfig.json",
+    "sp-install": "ts-node ./scripts/spotify-install.ts --project ./scripts/tsconfig.json",
     "webpack": "cross-env TS_NODE_PROJECT=\"./webpack/tsconfig.json\" webpack --mode \"production\""
   },
   "dependencies": {

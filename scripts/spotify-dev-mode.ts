@@ -4,19 +4,12 @@ import { COMPRESSION_LEVEL, zip } from 'zip-a-folder';
 import { baseBundlePath, bundlePath, spotifyPath, tempMakeBundlePath } from './sharedPaths';
 import { buildWithWebpack, startWebpackDevServer } from './webpack';
 import { cleanBuildDirs, installToSpotify, patchSPA } from './spa';
-import startSpotifyDev from './spotify';
+import startSpotifyDev, { preprocessDirs } from './spotify';
 
 const createLogger = require('logging');
 const log = createLogger.default('Spotify Dev Mode');
 
-log.info("Checking project structure");
-
-if (!fs.existsSync(baseBundlePath))
-    log.error("Spotify base bundle not found, please run unpack before proceeding");
-
-log.info("Checking for a Spotify installation");
-
-if (!fs.existsSync(spotifyPath)) log.error(process.platform === 'win32' ? "Error finding Spotify executable, make sure you are using the Win32 version of Spotify(Not the one from Microsoft Store)" : "Spotify not found");
+preprocessDirs();
 
 buildWithWebpack('development', () => {
     log.info("Patching base bundles");

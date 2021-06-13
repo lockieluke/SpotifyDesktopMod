@@ -1,7 +1,7 @@
 import cross_spawn = require('cross-spawn');
 import * as fs from 'fs-extra';
 import * as child_process from 'child_process';
-import { spotifyGlobPrefPath, spotifyPath } from './sharedPaths';
+import { baseBundlePath, spotifyGlobPrefPath, spotifyPath } from './sharedPaths';
 
 const createLogger = require('logging');
 
@@ -32,4 +32,16 @@ function enableDevMode() {
         prefs += "\r\napp.enable-developer-mode=true";
 
     fs.writeFileSync(spotifyGlobPrefPath, prefs);
+}
+
+export function preprocessDirs() {
+    const log = createLogger.default('SPDM Preprocessor');
+    log.info("Checking project structure");
+
+    if (!fs.existsSync(baseBundlePath))
+        log.error("Spotify base bundle not found, please run unpack before proceeding");
+
+    log.info("Checking for a Spotify installation");
+
+    if (!fs.existsSync(spotifyPath)) log.error(process.platform === 'win32' ? "Error finding Spotify executable, make sure you are using the Win32 version of Spotify(Not the one from Microsoft Store)" : "Spotify not found");
 }
