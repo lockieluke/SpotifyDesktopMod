@@ -14,8 +14,9 @@ export function patchSPA(mode: 'development' | 'production') {
 }
 
 export function installToSpotify() {
-    fs.copySync(path.join(bundlePath, 'xpui.spa'), spotifyXpuiPath, { overwrite: true });
-    fs.rmSync(path.join(bundlePath, 'xpui.spa'));
+    fs.moveSync(path.join(bundlePath, 'xpui.spa'), spotifyXpuiPath, {
+        overwrite: true
+    });
 }
 
 export function cleanBuildDirs() {
